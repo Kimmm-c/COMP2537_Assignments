@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:rgb(224, 121, 121);
+    text-align: center;
+    margin: 20px;
+}
+
+#search_section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#search_section div{
+    margin-bottom: 10px;
+}
+
+#pokemons_display{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.pokemon{
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    background-color: rgb(224, 121, 121);
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+img{
+    width: 100%;
+}
+
+.pokemon a, h4{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+}
+
+button{
+    background: rgb(224, 121, 121);
+    border-radius: 0.5rem;
+    border: none;
+    color:white;
+    width: 100px;
+}

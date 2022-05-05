@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style_search.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="search.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Pokemon</h1>
+        <div id="search_section">
+            <div id="search_by">
+                <label for="search_filter">Search by</label><br>
+                <select name="filter" id="filter">
+                    <option value="name">Name</option>
+                    <option value="habitat">Habitat</option>
+                    <option value="type">Type</option>
+                </select>
+            </div>
+            <div id="habitats" style="display: none">
+                <label for="habitat_search">Habitat</label><br>
+                <select name="habitat" id="habitat">
+                    <option value="1">Cave</option>
+                    <option value="2">Forest</option>
+                    <option value="3">Grassland</option>
+                    <option value="4">Mountain</option>
+                    <option value="5">Rare</option>
+                    <option value="6">Rough-terrain</option>
+                    <option value="7">Sea</option>
+                    <option value="8">Urban</option>
+                    <option value="9">Waters-edge</option>
+                </select>
+            </div>
+
+            <div id="types" style="display: none">
+                <label for="type_search">Type</label><br>
+                <select name="type" id="type">
+                    <option value="normal">normal</option>
+                    <option value="fighting">fighting</option>
+                    <option value="flying">flying</option>
+                    <option value="poison">poison</option>
+                    <option value="ground">ground</option>
+                    <option value="rock">rock</option>
+                    <option value="bug">bug</option>
+                    <option value="ghost">ghost</option>
+                    <option value="steel">steel</option>
+                    <option value="fire">fire</option>
+                    <option value="water">water</option>
+                    <option value="grass">grass</option>
+                    <option value="electric">electric</option>
+                    <option value="psychic">psychic</option>
+                    <option value="ice">ice</option>
+                    <option value="dragon">dragon</option>
+                    <option value="dark">dark</option>
+                    <option value="fairy">fairy</option>
+                    <option value="unknown">unknown</option>
+                    <option value="shadow">shadow</option>
+                </select>
+            </div>
+
+            <div id="search">
+                <label for="search_bar">Search keyword</label><br>
+                <input type="text" id="search_keyword">
+            </div>
+            <button id="submit">Submit</button>
+        </div>
+        <main id="pokemons_display">
+
+        </main>
+    </header>
+</body>
+
+</html>
