@@ -1,4 +1,4 @@
-pokemon_list = null;
+pokemon_history = new Set();
 
 function get_pokemons() {
     keyword = $("#search_keyword").val();
@@ -12,14 +12,25 @@ function get_pokemons() {
         $("#pokemons_display").empty();
         get_pokemon_by_name(keyword);
     }
+    $("#search_keyword").val("");
 }
 
 function get_pokemon_by_name(keyword) {
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${keyword}`,
         type: "GET",
-        success: process_pokemon
+        success: process
     })
+}
+
+function process(pokemon){
+    $("#pokemons_display").append(`<div class="pokemon"><h4>${pokemon.id}</h4>
+    <img src=${pokemon.sprites.other["official-artwork"]["front_default"]}>
+    <a href="profile.html" id=${pokemon.id} class="pokemon_name">${pokemon.name.toUpperCase()}</a>`)
+    
+    $("#display_history").append(`<div class="pokemon"><h4>${pokemon.id}</h4>
+    <img src=${pokemon.sprites.other["official-artwork"]["front_default"]}>
+    <a href="profile.html" id=${pokemon.id} class="pokemon_name">${pokemon.name.toUpperCase()}</a>`)
 }
 
 function display_options() {
