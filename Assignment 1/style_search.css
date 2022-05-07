@@ -28,7 +28,7 @@ h1{
 }
 
 .pokemon{
-    width: 47%;
+    width: 32%;
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
@@ -60,7 +60,24 @@ button{
     margin-top: 30px;
 }
 
-#recent, #history{
-    width: 50%;
+#recent{
+    width: 68%;
     text-align: center;
+}
+
+#history{
+    width: 30%;
+    text-align: center;
+}
+
+.retrieve_history{
+    background-color: rgb(129, 129, 129);
+    margin-bottom: 3px;
+}
+
+.remove_history_tag{
+    width:fit-content;
+    background-color: transparent;
+    color: black;
+    border: 0.01px solid black;
 }
