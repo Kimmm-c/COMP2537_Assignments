@@ -81,3 +81,29 @@ button{
     color: black;
     border: 0.01px solid black;
 }
+
+@media screen and (max-width: 600px){
+    #recent_or_history{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #recent, #history{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    #recent_or_history{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #recent, #history{
+        width: 100%;
+    }
+
+    .pokemon{
+        width: 100%;
+    }
+}

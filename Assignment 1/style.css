@@ -23,13 +23,17 @@ h1{
 
 #navbar div{
     display: flex;
-    width: 50%;
     justify-content: space-between;
 }
 
 #navbar a{
     color: white;
     text-decoration: none;
+    margin-right: 20px;
+}
+
+#last{
+    margin-left: auto;
 }
 
 main{
@@ -64,3 +68,17 @@ footer{
     text-align: center;
 }
 
+@media screen and (max-width: 480px){
+    .pokemon{
+        width: 100%;
+    }
+    #navbar div{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    #last{
+        margin-left: 0;
+    }
+}
