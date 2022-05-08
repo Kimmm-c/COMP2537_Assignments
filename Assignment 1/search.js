@@ -1,15 +1,48 @@
 function get_pokemons() {
+    $("#pokemons_display").empty();
     keyword = $("#search_keyword").val();
+    select = document.getElementById("filter");
+    filter = select.options[select.selectedIndex].value;
 
-    if (keyword.toUpperCase() == keyword.toLowerCase()) {
-        $("#pokemons_display").text("Invalid input. Must be letters only.")
-    } else {
-        $("#pokemons_display").empty();
-        get_pokemon_by_name(keyword);
-        $("#display_history").append(`<div><button class="retrieve_history" key="name" val=${keyword}>name ${keyword}</button>
+    if (filter == "name") {
+        if (keyword.toUpperCase() == keyword.toLowerCase()) {
+            $("#pokemons_display").text("Invalid input. Must be letters only.")
+        } else {
+            get_pokemon_by_name(keyword);
+            $("#display_history").append(`<div><button class="retrieve_history" key="name" val=${keyword}>name ${keyword}</button>
         <button class="remove_history_tag">x</button></div>`)
+        }
+    } else if (filter == "dex_num"){
+        if(isNaN(keyword) || keyword > 28 || keyword < 1){
+            $("#pokemons_display").text("Invalid input. Must be number from 1 - 28 only.")
+        }else{
+            get_pokedex(keyword);
+            $("#display_history").append(`<div><button class="retrieve_history" key="pokedex" val=${keyword}>pokedex ${keyword}</button>
+        <button class="remove_history_tag">x</button></div>`)
+        }
     }
+    
     $("#search_keyword").val("");
+}
+
+function get_pokedex(dex_num){
+    $.ajax({
+        url: `https://pokeapi.co/api/v2/pokedex/${dex_num}`,
+        type: "GET",
+        success: process_dex
+    })
+}
+
+function process_dex(pokemons){
+    //console.log(pokemons["pokemon_entries"][0]["pokemon_species"].name);
+    //console.log(pokemons["pokemon_entries"].lenght);
+    for(count=0; count<pokemons["pokemon_entries"].length; count++){
+        $.ajax({
+            url: `https://pokeapi.co/api/v2/pokemon/${pokemons["pokemon_entries"][count]["pokemon_species"].name}`,
+            type: "GET",
+            success: process_pokemon
+        })
+    }
 }
 
 function get_pokemon_by_name(keyword) {
@@ -77,7 +110,7 @@ function get_pokemons_type() {
     <button class="remove_history_tag">x</button></div>`)
 }
 
-function get_pokemon_one_type(pokemons){
+function get_pokemon_one_type(pokemons) {
     //console.log(pokemons["pokemon"].length);
     for (count = 0; count < pokemons["pokemon"].length; count++) {
         //console.log(pokemons["pokemon_species"][count].name);
@@ -100,23 +133,23 @@ function save_to_storage() {
     localStorage.setItem("pokemonID", $(this).attr("id"));
 }
 
-function retrieve_history(){
+function retrieve_history() {
     key = $(this).attr("key");
     val = $(this).attr("val");
     $("#pokemons_display").empty();
-    if(key == "name"){
+    if (key == "name") {
         $.ajax({
             url: `https://pokeapi.co/api/v2/pokemon/${val}`,
             type: "GET",
             success: process_pokemon
         })
-    }else if(key == "habitat"){
+    } else if (key == "habitat") {
         $.ajax({
             url: `https://pokeapi.co/api/v2/pokemon-habitat/${val}`,
             type: "GET",
             success: get_pokemon
         })
-    }else if(key == "type"){
+    } else if (key == "type") {
         $.ajax({
             url: `https://pokeapi.co/api/v2/type/${val}`,
             type: "GET",
@@ -125,7 +158,7 @@ function retrieve_history(){
     }
 }
 
-function remove_history_tag(){
+function remove_history_tag() {
     $(this).parent().remove();
 }
 
@@ -135,8 +168,9 @@ function setup() {
     $("#filter").on("change", display_options);
     $('#habitat').on('change', get_pokemons_habitat);
     $('#type').on('change', get_pokemons_type);
+    //$('#region').on('change', get_pokemons_region);
     $("body").on("click", ".pokemon_name", save_to_storage);
-    $("body").on("click", ".retrieve_history", retrieve_history);   
+    $("body").on("click", ".retrieve_history", retrieve_history);
     $("body").on("click", ".remove_history_tag", remove_history_tag);
 }
 
