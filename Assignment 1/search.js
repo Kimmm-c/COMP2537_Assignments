@@ -12,20 +12,20 @@ function get_pokemons() {
             $("#display_history").append(`<div><button class="retrieve_history" key="name" val=${keyword}>name ${keyword}</button>
         <button class="remove_history_tag">x</button></div>`)
         }
-    } else if (filter == "dex_num"){
-        if(isNaN(keyword) || keyword > 28 || keyword < 1){
+    } else if (filter == "dex_num") {
+        if (isNaN(keyword) || keyword > 28 || keyword < 1) {
             $("#pokemons_display").text("Invalid input. Must be number from 1 - 28 only.")
-        }else{
+        } else {
             get_pokedex(keyword);
             $("#display_history").append(`<div><button class="retrieve_history" key="pokedex" val=${keyword}>pokedex ${keyword}</button>
         <button class="remove_history_tag">x</button></div>`)
         }
     }
-    
+
     $("#search_keyword").val("");
 }
 
-function get_pokedex(dex_num){
+function get_pokedex(dex_num) {
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokedex/${dex_num}`,
         type: "GET",
@@ -33,10 +33,10 @@ function get_pokedex(dex_num){
     })
 }
 
-function process_dex(pokemons){
+function process_dex(pokemons) {
     //console.log(pokemons["pokemon_entries"][0]["pokemon_species"].name);
     //console.log(pokemons["pokemon_entries"].lenght);
-    for(count=0; count<pokemons["pokemon_entries"].length; count++){
+    for (count = 0; count < pokemons["pokemon_entries"].length; count++) {
         $.ajax({
             url: `https://pokeapi.co/api/v2/pokemon/${pokemons["pokemon_entries"][count]["pokemon_species"].name}`,
             type: "GET",
@@ -155,23 +155,29 @@ function retrieve_history() {
             type: "GET",
             success: get_pokemon_one_type
         })
+    } else {
+        $.ajax({
+            url: `https://pokeapi.co/api/v2/pokedex/${val}`,
+            type: "GET",
+            success: process_dex
+        })
     }
 }
 
-function remove_history_tag() {
-    $(this).parent().remove();
-}
+    function remove_history_tag() {
+        $(this).parent().remove();
+    }
 
-function setup() {
-    //get_pokemons_habitat();
-    $("button").click(get_pokemons);
-    $("#filter").on("change", display_options);
-    $('#habitat').on('change', get_pokemons_habitat);
-    $('#type').on('change', get_pokemons_type);
-    //$('#region').on('change', get_pokemons_region);
-    $("body").on("click", ".pokemon_name", save_to_storage);
-    $("body").on("click", ".retrieve_history", retrieve_history);
-    $("body").on("click", ".remove_history_tag", remove_history_tag);
-}
+    function setup() {
+        //get_pokemons_habitat();
+        $("button").click(get_pokemons);
+        $("#filter").on("change", display_options);
+        $('#habitat').on('change', get_pokemons_habitat);
+        $('#type').on('change', get_pokemons_type);
+        //$('#region').on('change', get_pokemons_region);
+        $("body").on("click", ".pokemon_name", save_to_storage);
+        $("body").on("click", ".retrieve_history", retrieve_history);
+        $("body").on("click", ".remove_history_tag", remove_history_tag);
+    }
 
-$(document).ready(setup);
+    $(document).ready(setup);
