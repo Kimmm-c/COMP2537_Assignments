@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style_search.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="search.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Pokemon</h1>
+        <div id="search_section">
+            <div id="search_by">
+                <label for="search_filter">Search by</label><br>
+                <select name="filter" id="filter">
+                    <option value="name">Name</option>
+                    <option value="dex_num">Pokedex</option>
+                    <option value="habitat">Habitat</option>
+                    <option value="type">Type</option>
+                </select>
+            </div>
+            <div id="habitats" style="display: none">
+                <label for="habitat_search">Habitat</label><br>
+                <select name="habitat" id="habitat">
+                    <option value="forest">Forest</option>
+                    <option value="mountain">Mountain</option>
+                    <option value="urban">Urban</option>
+                </select>
+            </div>
+
+            <div id="types" style="display: none">
+                <label for="type_search">Type</label><br>
+                <select name="type" id="type">
+                    <option value="flying">flying</option>
+                    <option value="water">water</option>
+                    <option value="grass">grass</option>
+                </select>
+            </div>
+
+            <div id="search">
+                <label for="search_bar">Enter Pokemon name <b>Or</b> Dex# (1-28)</label><br>
+                <input type="text" id="search_keyword">
+            </div>
+            <button id="submit">Submit</button>
+        </div>
+
+    </header>
+    <div id="recent_or_history">
+        <div id="recent"><h3>Recent</h3>
+            <main id="pokemons_display">
+
+            </main>
+        </div>
+        <div id="history"><h3>History</h3>
+            <div id="display_history">
+
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:rgb(224, 121, 121);
+    text-align: center;
+    margin: 20px;
+}
+
+#search_section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#search_section div{
+    margin-bottom: 10px;
+}
+
+#pokemons_display, #display_history{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.pokemon{
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    background-color: rgb(224, 121, 121);
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+img{
+    width: 100%;
+}
+
+.pokemon a, h4{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+}
+
+button{
+    background: rgb(224, 121, 121);
+    border-radius: 0.5rem;
+    border: none;
+    color:white;
+    width: 100px;
+}
+
+#recent_or_history{
+    display: flex;
+    margin-top: 30px;
+}
+
+#recent{
+    width: 68%;
+    text-align: center;
+}
+
+#history{
+    width: 30%;
+    text-align: center;
+}
+
+.retrieve_history{
+    background-color: rgb(129, 129, 129);
+    margin-bottom: 3px;
+}
+
+.remove_history_tag{
+    width:fit-content;
+    background-color: transparent;
+    color: black;
+    border: 0.01px solid black;
+}
+
+@media screen and (max-width: 600px){
+    #recent_or_history{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #recent, #history{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    #recent_or_history{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #recent, #history{
+        width: 100%;
+    }
+
+    .pokemon{
+        width: 100%;
+    }
+}
